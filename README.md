@@ -16,12 +16,12 @@ python3 compare.py input.txt scores.txt
 
 Пример входного файла input.txt:
 
-files/main.py plagiat1/main.py
-files/loss.py plagiat2/loss.py
-files/loss.py files/loss.py
+- files/main.py plagiat1/main.py
+- files/loss.py plagiat2/loss.py
+- files/loss.py files/loss.py
 
 Пример выходного файла scores.txt:
 
-0.63
-0.84
-0.153
+- 0.63
+- 0.84
+- 0.153
