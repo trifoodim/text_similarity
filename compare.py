@@ -141,23 +141,18 @@ def survey(s1, s2):
     output += "similarity: [ " + " | ".join(
         ["%s : %4.2f%%" % (mt['name'], np.multiply(100, mt['s'])) for mt in results])
 
-    # Output the verification status s1 and s2
     output += "verification : [ %s ]\n\n" % valid
     return output
 
 
 def demo(filename):
-    # Output the full path of the string file
     output = "Filename%s: %s\n\n" % (" " * 5, os.path.abspath(filename))
 
-    # Read all string from file 'input.txt'
     with open(filename, 'r') as f:
         strings = f.readline().split('\n')
-        # For each pair of strings compute the similarity score,
-        # based on Levenshtein distance
+
         for i in np.arange(len(strings) - 1):
             if len(strings[i]) > 1 and len(strings[i + 1]) > 1:
-                # Compute metrics of strings[i] and strings[i + 1], and output the survey
                 print(survey(strings[i], strings[i + 1]))
                 time.sleep(1)
 
@@ -169,20 +164,7 @@ mt_names = ["Levenshtein Distance"]
 if __name__ == '__main__':
     inp_file_name, out_file_name = arg_parce_fnc()
 
-    print(demo(inp_file_name))
-    # with open(inp_file_name, 'r') as file1:
-    #
-    #     for line in file1:
-    #         f1, f2 = line.split()
-    #         print(f1, f2)
-    #
-    #         with open(f1, 'r') as inside_file:
-    #             # for line_i in inside_file:
-    #             #     lines = line_i.readlines()
-    #             #     print(lines)
-    #             lines = inside_file.readlines()
-    #             print(lines)
-    #
-    # # for dirpath, dirnames, filenames in os.walk("."):
-    # #     for filename in [f for f in filenames if f.endswith(".py")]:
-    # #         print(os.path.join(dirpath, filename))
+    res = demo(inp_file_name)
+
+    with open(out_file_name, 'w') as file1:
+        file1.write(res)
